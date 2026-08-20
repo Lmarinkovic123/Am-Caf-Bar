@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amé Café & Bar - Cafetería en Santa Cruz de la Sierra</title>
+  <meta name="description"
+    content="Amé Café & Bar en el Shopping Fidalga, Tercer Anillo Externo, Santa Cruz de la Sierra: cafetería con consumo en el lugar y para llevar, un espacio cálido para hacer una pausa." />
+  <style>
+    :root {
+      --cream: #f8efe2;
+      --warm-cream: #fff9ef;
+      --paper: #fffdf8;
+      --sand: #e7d0b2;
+      --wood: #a87147;
+      --espresso: #24140d;
+      --coffee: #4c2d1d;
+      --muted: #765c49;
+      --soft: #f2e2cf;
+      --sage: #778267;
+      --sage-soft: #e5eadc;
+      --terracotta: #b8563c;
+      --terracotta-dark: #963f2b;
+      --gold: #d79b3a;
+      --charcoal: #17120f;
+      --line: rgba(76, 45, 29, 0.14);
+      --shadow: 0 28px 80px rgba(76, 45, 29, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--coffee);
+      background: var(--warm-cream);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    section {
+      scroll-margin-top: 88px;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(76, 45, 29, 0.08);
+      background: rgba(255, 249, 239, 0.9);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+      color: var(--espresso);
+      font-weight: 850;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 10px 24px rgba(76, 45, 29, 0.16);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: rgba(76, 45, 29, 0.76);
+      font-size: 0.94rem;
+      font-weight: 750;
+    }
+
+    .navlinks a {
+      transition: color 180ms ease;
+    }
+
+    .navlinks a:hover {
+      color: var(--terracotta);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 850;
+      line-height: 1;
+      white-space: nowrap;
+      transition:
+        transform 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      color: #fffdf8;
+      background: var(--terracotta);
+      box-shadow: 0 16px 34px rgba(184, 86, 60, 0.26);
+    }
+
+    .button.primary:hover {
+      background: var(--terracotta-dark);
+    }
+
+    .button.secondary {
+      color: var(--terracotta);
+      border-color: rgba(184, 86, 60, 0.32);
+      background: rgba(255, 253, 248, 0.75);
+    }
+
+    .button.secondary:hover {
+      color: #fffdf8;
+      background: var(--terracotta);
+    }
+
+    .hamburger {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--espresso);
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 76px 0 auto 0;
+      z-index: 25;
+      display: none;
+      padding: 18px 16px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 249, 239, 0.98);
+      box-shadow: 0 24px 60px rgba(76, 45, 29, 0.14);
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 16px 10px;
+      color: var(--espresso);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .mobile-menu .button {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      background: linear-gradient(90deg, var(--charcoal) 0 50%, var(--cream) 50% 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      min-height: calc(100vh - 76px);
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-media {
+      position: relative;
+      display: grid;
+      align-items: end;
+      min-height: 620px;
+      overflow: hidden;
+      padding: 44px;
+      color: var(--paper);
+      background:
+        linear-gradient(180deg, rgba(23, 18, 15, 0.08), rgba(23, 18, 15, 0.68)),
+        url("assets/cafe2.jpg") center/cover;
+    }
+
+    .hero-media::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background:
+        radial-gradient(circle at 24% 24%, rgba(215, 155, 58, 0.2), transparent 18rem),
+        linear-gradient(90deg, rgba(23, 18, 15, 0.2), transparent 55%);
+    }
+
+    .hero-note {
+      position: relative;
+      max-width: 330px;
+      padding: 20px;
+      border: 1px solid rgba(255, 253, 248, 0.2);
+      border-radius: 22px;
+      background: rgba(23, 18, 15, 0.58);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.08rem;
+    }
+
+    .hero-note span {
+      color: rgba(255, 253, 248, 0.76);
+      line-height: 1.55;
+    }
+
+    .hero-copy-wrap {
+      display: grid;
+      align-content: center;
+      min-height: 620px;
+      padding: 70px min(7vw, 82px);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--terracotta);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2 {
+      color: var(--espresso);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin-bottom: 22px;
+      font-size: clamp(3.4rem, 6.5vw, 6.8rem);
+      line-height: 0.92;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: clamp(2.2rem, 4vw, 4.3rem);
+      line-height: 1;
+    }
+
+    .accent {
+      color: var(--terracotta);
+    }
+
+    .lead {
+      max-width: 560px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      line-height: 1.76;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      color: var(--terracotta);
+      font-weight: 850;
+      transition:
+        color 180ms ease,
+        opacity 180ms ease,
+        transform 180ms ease;
+    }
+
+    .instagram-link:hover {
+      color: var(--terracotta-dark);
+      opacity: 0.86;
+      transform: translateY(-2px);
+    }
+
+    .instagram-link svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .social-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      line-height: 1;
+      color: var(--terracotta);
+      transition:
+        color 180ms ease,
+        opacity 180ms ease,
+        transform 180ms ease;
+    }
+
+    .social-icon-link:hover {
+      color: var(--terracotta-dark);
+      opacity: 0.86;
+      transform: translateY(-2px);
+    }
+
+    .social-icon-link svg {
+      display: block;
+      width: 23px;
+      height: 23px;
+      overflow: visible;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.65fr;
+      align-items: start;
+      gap: 28px;
+      max-width: 660px;
+      margin-top: 44px;
+    }
+
+    .stats .stat {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--espresso);
+      font-size: clamp(1.8rem, 3vw, 2.45rem);
+      line-height: 1;
+    }
+
+    .stat.hours strong {
+      font-size: clamp(1.8rem, 3vw, 2.45rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .stat.hours {
+      min-width: 0;
+      padding-top: 0;
+    }
+
+    .stat.hours span {
+      text-align: left;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 9px;
+      color: var(--terracotta);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 104px 0;
+    }
+
+    .split {
+      display: grid;
+      align-items: center;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(44px, 6vw, 86px);
+    }
+
+    .copy p {
+      color: var(--muted);
+      line-height: 1.76;
+    }
+
+    .copy .actions {
+      margin-top: 28px;
+    }
+
+    .category-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .chip {
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--coffee);
+      background: var(--paper);
+      font-weight: 800;
+    }
+
+    .image-frame {
+      overflow: hidden;
+      border-radius: 28px;
+      background: var(--soft);
+      box-shadow: var(--shadow);
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+    }
+
+    .image-frame.short img {
+      height: 460px;
+    }
+
+    .image-frame.framed {
+      padding: 26px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, var(--paper), var(--cream));
+    }
+
+    .image-frame.framed img {
+      border-radius: 20px;
+    }
+
+    .dish-panel {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: linear-gradient(145deg, var(--paper), var(--cream));
+      box-shadow: var(--shadow);
+    }
+
+    .dish-panel img {
+      width: 100%;
+      height: 430px;
+      border-radius: 24px;
+      object-fit: cover;
+    }
+
+    img.dessert-drink {
+      object-fit: cover;
+      object-position: 50% 54%;
+    }
+
+    img.dessert-berry {
+      object-fit: cover;
+      object-position: 50% 56%;
+    }
+
+    img.coffee-1 {
+      object-position: 50% 58%;
+    }
+
+    .facility {
+      text-align: center;
+      background: #fffaf2;
+    }
+
+    .facility .lead {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .facility-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .facility-grid .big,
+    .facility-stack figure {
+      overflow: hidden;
+      border-radius: 28px;
+      background: var(--soft);
+      box-shadow: 0 18px 50px rgba(76, 45, 29, 0.12);
+    }
+
+    .facility-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .facility-grid .big {
+      min-height: 560px;
+    }
+
+    .facility-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .facility-stack figure {
+      min-height: 271px;
+      margin: 0;
+    }
+
+    .location {
+      background: var(--cream);
+    }
+
+    .map-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      min-height: 470px;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(145deg, rgba(119, 130, 103, 0.16), rgba(255, 253, 248, 0.72)),
+        url("assets/lugar.jpg") center/cover;
+    }
+
+    .map-card::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(180deg, transparent 45%, rgba(36, 20, 13, 0.42));
+    }
+
+    .map-pin {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 26px;
+      z-index: 1;
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 253, 248, 0.92);
+      box-shadow: 0 18px 44px rgba(36, 20, 13, 0.16);
+    }
+
+    .map-pin strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--espresso);
+    }
+
+    .map-pin span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .info-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .info-item {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+    }
+
+    .info-item span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--terracotta);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .info-item strong {
+      color: var(--espresso);
+      line-height: 1.35;
+    }
+
+    .reviews {
+      background: var(--paper);
+    }
+
+    .review-head {
+      display: grid;
+      align-items: end;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+
+    .score {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--cream);
+    }
+
+    .score strong {
+      color: var(--espresso);
+      font-size: 2rem;
+    }
+
+    .score span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      min-height: 260px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--warm-cream);
+      box-shadow: 0 18px 48px rgba(76, 45, 29, 0.08);
+    }
+
+    .testimonial-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .person {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--paper);
+      background: var(--terracotta);
+      font-weight: 900;
+    }
+
+    .person strong {
+      display: block;
+      color: var(--espresso);
+    }
+
+    .person span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stars {
+      color: #f2b31d;
+      letter-spacing: 2px;
+    }
+
+    .testimonial p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.72;
+    }
+
+    .footer {
+      padding: 70px 0 34px;
+      color: rgba(255, 253, 248, 0.74);
+      background: var(--charcoal);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.7fr);
+      align-items: start;
+      gap: 56px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin-top: 0;
+      color: var(--paper);
+    }
+
+    .footer h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 253, 248, 0.72);
+      line-height: 1.7;
+    }
+
+    .footer p {
+      max-width: 470px;
+      text-align: justify;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-grid a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin: 0;
+      border: 1px solid rgba(255, 253, 248, 0.14);
+      border-radius: 16px;
+      background: rgba(255, 253, 248, 0.045);
+      font-weight: 800;
+      transition:
+        background 180ms ease,
+        color 180ms ease,
+        transform 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .contact-grid a:hover {
+      color: var(--paper);
+      border-color: rgba(255, 253, 248, 0.28);
+      background: rgba(255, 253, 248, 0.09);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 253, 248, 0.12);
+      color: rgba(255, 253, 248, 0.54);
+      font-size: 0.9rem;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 700ms ease,
+        transform 700ms ease;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .js .reveal.visible,
+    .hero .reveal {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    @media (max-width: 980px) {
+
+      .navlinks,
+      .topbar .nav>.button {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero {
+        background: var(--cream);
+      }
+
+      .hero-grid,
+      .split,
+      .review-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media,
+      .hero-copy-wrap {
+        min-height: auto;
+      }
+
+      .hero-media {
+        min-height: 470px;
+      }
+
+      .hero-copy-wrap {
+        padding: 48px 24px 60px;
+        text-align: center;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .copy,
+      .facility,
+      .review-head,
+      .footer {
+        text-align: center;
+      }
+
+      .label,
+      .lead,
+      .copy p,
+      .footer p {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .copy .actions,
+      .category-row,
+      .hero .actions {
+        justify-content: center;
+      }
+
+      .info-item,
+      .map-pin,
+      .testimonial {
+        text-align: center;
+      }
+
+      .testimonial-top,
+      .person {
+        justify-content: center;
+      }
+
+      .score {
+        width: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .footer p {
+        text-align: center;
+      }
+
+      .location .copy {
+        max-width: 760px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+      }
+
+      .location .copy p {
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .location .copy .actions {
+        justify-content: center;
+      }
+
+      .facility-grid,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 22px, 1160px);
+      }
+
+      .brand span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: clamp(3.1rem, 16vw, 4.5rem);
+      }
+
+      h2 {
+        font-size: clamp(2.15rem, 11vw, 3.2rem);
+      }
+
+      .hero-media {
+        min-height: 430px;
+        padding: 18px;
+      }
+
+      .hero-copy-wrap {
+        padding: 40px 12px 54px;
+      }
+
+      .stats,
+      .info-list,
+      .facility-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-frame img,
+      .dish-panel img {
+        height: 360px;
+      }
+
+      .facility-grid .big,
+      .facility-stack figure {
+        min-height: 280px;
+      }
+
+      .map-card {
+        min-height: 390px;
+      }
+
+      .review-head {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Amé Café & Bar inicio">
+        <img src="assets/logo.jpg" alt="" />
+        <span>
+          Amé Café & Bar
+          <small>Shopping Fidalga, Santa Cruz</small>
+        </span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navegación principal">
+        <a href="#home">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#facility">Lugar</a>
+        <a href="#reviews">Opiniones</a>
+      </nav>
+
+      <a class="button secondary" href="https://wa.me/59175026695" target="_blank" rel="noreferrer">Contactar</a>
+
+      <button class="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" aria-label="Menú móvil">
+      <a href="#home">Inicio</a>
+      <a href="#menu">Menú</a>
+      <a href="#facility">Lugar</a>
+      <a href="#reviews">Opiniones</a>
+      <a href="#location">Ubicación</a>
+      <a class="button primary" href="https://wa.me/59175026695" target="_blank" rel="noreferrer">WhatsApp</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div class="hero-media reveal">
+          <div class="hero-note">
+            <strong>Café, calma y algo rico para acompañar.</strong>
+            <span>Un espacio para desayunar, trabajar, reunirte o pedir café para llevar.</span>
+          </div>
+        </div>
+
+        <div class="hero-copy-wrap reveal">
+          <span class="label">Cafetería en Shopping Fidalga</span>
+          <h1>Tu pausa en <span class="accent"> La San Martín.</span></h1>
+          <p class="lead">
+            Café, algo rico y un momento para vos. Vení a consumir en el lugar
+            o pedí para llevar en Amé Café & Bar.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="menu.pdf" target="_blank" rel="noreferrer" type="application/pdf">Ver
+              menú</a>
+            <a class="social-icon-link" href="https://www.instagram.com/ame.specialtycoffee/?hl=es" target="_blank"
+              rel="noreferrer" aria-label="Instagram de Amé Café & Bar">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2" />
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+                <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+              </svg>
+            </a>
+            <a class="social-icon-link" href="https://www.facebook.com/amecafebar/?locale=es_LA" target="_blank"
+              rel="noreferrer" aria-label="Facebook de Amé Café & Bar">
+              <svg viewBox="0 0 320 512" fill="none" aria-hidden="true">
+                <path
+                  d="M279.1 288l14.2-92.7h-88.9v-60.1c0-25.4 12.4-50.1 52.2-50.1H297V6.3S260.3 0 225.2 0C151.9 0 104 44.4 104 124.7v70.6H22.9V288H104v224h100.4V288h74.7Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
+            <a class="social-icon-link" href="https://wa.me/59175026695" target="_blank" rel="noreferrer"
+              aria-label="WhatsApp de Amé Café & Bar">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 4.5a7.5 7.5 0 0 0-6.3 11.5l-.8 3.1 3.2-.8A7.5 7.5 0 1 0 12 4.5Z" stroke="currentColor"
+                  stroke-width="1.8" stroke-linejoin="round" />
+                <path
+                  d="M8.8 8.6c.2-.4.4-.5.7-.5h.4c.2 0 .4.1.5.4l.6 1.5c.1.2.1.4-.1.6l-.3.4c-.2.2-.2.4 0 .6.3.5.7 1 1.3 1.5.6.5 1.2.8 1.7 1 .3.1.5.1.7-.1l.6-.6c.2-.2.4-.2.6-.1l1.4.7c.3.1.4.3.4.5 0 .6-.4 1.2-1 1.6-.5.3-1.2.4-2.4 0-2-.6-3.5-1.9-4.7-3.6-.9-1.3-1.2-2.5-.7-3.8Z"
+                  fill="currentColor" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="stats" aria-label="Datos rápidos">
+            <div class="stat">
+              <strong>305</strong>
+              <span>opiniones en Google</span>
+            </div>
+            <div class="stat">
+              <strong>4.4</strong>
+              <span>estrellas de valoración</span>
+            </div>
+            <div class="stat hours">
+              <strong>7 a.m. – 11 p.m.</strong>
+              <span>abierto todos los días</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container split">
+        <div class="copy reveal">
+          <span class="label">Nuestro menú</span>
+          <h2>Elegí tu <span class="accent">cafecito.</span></h2>
+          <p>
+            La mejor manera de empezar la semana, cortar la tarde o seguir el día con calma:
+            espresso, cappuccino, bebidas frías, postres y bocadillos.
+          </p>
+          <div class="category-row" aria-label="Categorías del menú">
+            <span class="chip">Café</span>
+            <span class="chip">Bebidas frías</span>
+            <span class="chip">Postres</span>
+            <span class="chip">Desayunos</span>
+            <span class="chip">Bocadillos</span>
+          </div>
+          <div class="actions">
+            <a class="button primary" href="menu.pdf" target="_blank" rel="noreferrer" type="application/pdf">Ver menú
+              completo</a>
+            <a class="button secondary" href="https://wa.me/59175026695" target="_blank" rel="noreferrer">Escríbenos por
+              WhatsApp</a>
+          </div>
+        </div>
+
+        <figure class="image-frame framed reveal">
+          <img class="dessert-berry" src="assets/torta.jpg" alt="Postre de chocolate de Amé Café & Bar" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <figure class="dish-panel reveal">
+          <img class="dessert-drink" src="assets/omellete.jpg" alt="Postre con frutos rojos de Amé Café & Bar" />
+        </figure>
+
+        <div class="copy reveal">
+          <span class="label">Algo para acompañar</span>
+          <h2>Algo rico para <span class="accent">acompañar.</span></h2>
+          <p>
+            Un cafecito para hacer pausa sabe mejor con postres, bocadillos o desayuno.
+            Para quedarte un rato o llevarte algo para el camino.
+          </p>
+          <div class="info-list">
+            <div class="info-item">
+              <span>Nuestra especialidad</span>
+              <strong>Buen café y postres</strong>
+            </div>
+            <div class="info-item">
+              <span>También tenemos</span>
+              <strong>Bocadillos y té</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section facility" id="facility">
+      <div class="container">
+        <span class="label">El lugar</span>
+        <h2>Vení con calma y disfrutá <span class="accent">el lugar.</span></h2>
+        <p class="lead">
+          Tu esquina favorita de Café
+        </p>
+
+        <div class="facility-grid">
+          <figure class="big reveal">
+            <img src="assets/cafe3.jpg" alt="Interior de Amé Café & Bar con mesas y barra" />
+          </figure>
+          <div class="facility-stack">
+            <figure class="reveal">
+              <img src="assets/cafe.jpg" alt="Entrada y exterior de Amé Café & Bar" />
+            </figure>
+            <figure class="reveal">
+              <img class="coffee-1" src="assets/copa.jpg" alt="Café servido en Amé Café & Bar" />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section location" id="location">
+      <div class="container split">
+        <div class="copy reveal">
+          <span class="label">Ubicación</span>
+          <h2>Encontrános en <span class="accent">Shopping Fidalga.</span></h2>
+          <p>
+            Estámos la Avenida San Martín, dentro del Shopping Fidalga, sobre el Tercer Anillo Externo,
+            Santa Cruz de la Sierra. También podés pedir por PedidosYa!
+          </p>
+          <div class="info-list">
+            <div class="info-item">
+              <span>Dirección</span>
+              <strong>Shopping Fidalga, Tercer Anillo Externo</strong>
+            </div>
+            <div class="info-item">
+              <span>Horario</span>
+              <strong>Todos los días <br> 7 a.m. - 11 p.m.</strong>
+            </div>
+            <div class="info-item">
+              <span>WhatsApp</span>
+              <strong>+591 75026695</strong>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="button primary"
+              href="https://www.google.com/maps/place/Am%C3%A9+Caf%C3%A9+%26+Bar/@-17.7571461,-63.203365,15z/data=!4m11!1m2!2m1!1same+cafe!3m7!1s0x93f1e7f419b7dde9:0xae69fa775998f495!8m2!3d-17.7603669!4d-63.1984982!10e9!15sCghhbWUgY2FmZVoKIghhbWUgY2FmZZIBBGNhZmWaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnR3U2xaSFJuTmpXRkpZVkRBeE5GRXdVazlTTTBrd1UxVmFVMDlWUlJBQuABAPoBBAgAEEo!16s%2Fg%2F11gfdt83gz"
+              target="_blank" rel="noreferrer">Ver ubicación</a>
+            <a class="button secondary" href="https://wa.me/59175026695" target="_blank" rel="noreferrer">Contactar</a>
+          </div>
+        </div>
+
+        <a class="map-card reveal"
+          href="https://www.google.com/maps/place/Am%C3%A9+Caf%C3%A9+%26+Bar/@-17.7571461,-63.203365,15z/data=!4m11!1m2!2m1!1same+cafe!3m7!1s0x93f1e7f419b7dde9:0xae69fa775998f495!8m2!3d-17.7603669!4d-63.1984982!10e9!15sCghhbWUgY2FmZVoKIghhbWUgY2FmZZIBBGNhZmWaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnR3U2xaSFJuTmpXRkpZVkRBeE5GRXdVazlTTTBrd1UxVmFVMDlWUlJBQuABAPoBBAgAEEo!16s%2Fg%2F11gfdt83gz"
+          target="_blank" rel="noreferrer" aria-label="Abrir ubicación de Amé Café & Bar en Google Maps">
+          <span class="map-pin">
+            <strong>Shopping Fidalga, Santa Cruz</strong>
+            <span>Abre el mapa para llegar directo a Amé Café & Bar.</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <div class="review-head">
+          <div class="reveal">
+            <span class="label">Opiniones</span>
+            <h2>Lo que dicen quienes <span class="accent">nos visitan.</span></h2>
+          </div>
+          <div class="score reveal" aria-label="Calificación de Google">
+            <strong>4.4</strong>
+            <span>305 opiniones<br />en Google</span>
+          </div>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial reveal">
+            <div class="testimonial-top">
+              <div class="person">
+                <span class="avatar">M</span>
+                <span>
+                  <strong>Molly</strong>
+                  <span>Local Guide · 116 opiniones</span>
+                </span>
+              </div>
+              <span class="stars" aria-hidden="true">★★★★★</span>
+            </div>
+            <p>
+              Un sitio muy agradable para compartir un café con amigos. Mi esposo pidió un sandwich
+              que venía acompañado de papas fritas. Mi amiga y yo nos decidimos por probar las
+              empanadas de carne (una frita y la otra horneada), estaban de muy buen sabor. Pedimos
+              un té chai que nos tocó pedir el favor al mesero de que nos los cambiaran porque no
+              sabían a nada, y muy amable nos los reemplazó. Mi amiga pidió un capuchino y le gustó.
+              Nos encantó el ambiente y la decoración de las tazas. Puedes sentarte adentro o también
+              disfrutar de las mesas al aire libre.
+            </p>
+          </article>
+
+          <article class="testimonial reveal">
+            <div class="testimonial-top">
+              <div class="person">
+                <span class="avatar">J</span>
+                <span>
+                  <strong>Jhenny Suntura</strong>
+                  <span>Local Guide · 38 opiniones</span>
+                </span>
+              </div>
+              <span class="stars" aria-hidden="true">★★★★★</span>
+            </div>
+            <p>
+              Excelente atención, muy sabrosa la comida y el café, lindo ambiente.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>Amé Café & Bar</h3>
+          <p>
+            Cafetería en el Shopping Fidalga, Santa Cruz de la Sierra. Un espacio cálido para
+            desayunar, trabajar, conversar o llevar café para seguir el día.
+          </p>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <div class="contact-grid">
+            <a href="https://wa.me/59175026695" target="_blank" rel="noreferrer">WhatsApp</a>
+            <a href="https://www.instagram.com/ame.specialtycoffee/?hl=es" target="_blank"
+              rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/amecafebar/?locale=es_LA" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://www.google.com/maps/place/Am%C3%A9+Caf%C3%A9+%26+Bar/@-17.7571461,-63.203365,15z/data=!4m11!1m2!2m1!1same+cafe!3m7!1s0x93f1e7f419b7dde9:0xae69fa775998f495!8m2!3d-17.7603669!4d-63.1984982!10e9!15sCghhbWUgY2FmZVoKIghhbWUgY2FmZZIBBGNhZmWaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnR3U2xaSFJuTmpXRkpZVkRBeE5GRXdVazlTTTBrd1UxVmFVMDlWUlJBQuABAPoBBAgAEEo!16s%2Fg%2F11gfdt83gz"
+              target="_blank" rel="noreferrer">Google Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Shopping Fidalga, Tercer Anillo Externo, Santa Cruz de la Sierra. Todos los días 7 a.m. - 11 p.m.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.add("js");
+
+    const hamburger = document.querySelector(".hamburger");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    hamburger.addEventListener("click", () => {
+      const isOpen = mobileMenu.classList.toggle("open");
+      document.body.classList.toggle("menu-open", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        }
+      },
+      { threshold: 0.14 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => {
+      if (el.closest(".hero") && el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+        el.classList.add("visible");
+      }
+      observer.observe(el);
+    });
+  </script>
+</body>
+
+</html>
